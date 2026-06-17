@@ -6,18 +6,15 @@ import { checkGuess } from "./utils.js";
 
 function App() {
   const [answer, setAnswer] = useState(getRandomPokemon);
-  const [guesses, setGuesses] = useState([
-    [
-      { letter: "c", status: "correct" },
-      { letter: "r", status: "absent" },
-      { letter: "a", status: "present" },
-      { letter: "n", status: "absent" },
-      { letter: "e", status: "correct" },
-    ],
-  ]);
-  const [currentGuess, setCurrentGuess] = useState("slate");
+  const [guesses, setGuesses] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState("");
+
+  const lastGuess = guesses[guesses.length - 1];
+  const hasWon = lastGuess?.every((tile) => tile.status === "correct");
+  const hasLost = !hasWon && guesses.length === 6;
 
   function handleKey(key) {
+    if (hasWon || hasLost) return;
     if (key === "Enter") {
       if (currentGuess.length !== 5) return;
 
@@ -45,6 +42,12 @@ function App() {
   console.log("answer is: ", answer);
   return (
     <div>
+      {hasWon && <div className="message">You won!</div>}
+      {hasLost && (
+        <div className="message">
+          You lost! The pokemon was {answer.toUpperCase()}
+        </div>
+      )}
       <Board guesses={guesses} currentGuess={currentGuess} />
       <Keyboard onKey={handleKey} />
     </div>
