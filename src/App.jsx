@@ -43,6 +43,7 @@ function App() {
   console.log("answer is: ", answer);
   return (
     <div>
+      <h1 className="title">Pokédle</h1>
       {hasWon && <div className="message">You won!</div>}
       {hasLost && (
         <div className="message">
