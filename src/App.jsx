@@ -2,6 +2,7 @@ import Board from "./components/board";
 import Keyboard from "./components/keyboard";
 import { useState, useEffect } from "react";
 import { getRandomPokemon } from "./words";
+import { checkGuess } from "./utils.js";
 
 function App() {
   const [answer, setAnswer] = useState(getRandomPokemon);
@@ -20,12 +21,8 @@ function App() {
     if (key === "Enter") {
       if (currentGuess.length !== 5) return;
 
-      const newRow = currentGuess.split("").map((letter) => ({
-        letter,
-        status: "",
-      }));
-
-      setGuesses((prev) => [...prev, newRow]);
+      const result = checkGuess(currentGuess, answer);
+      setGuesses((prev) => [...prev, result]);
       setCurrentGuess("");
     } else if (key === "Backspace") {
       setCurrentGuess((prev) => prev.slice(0, -1));
