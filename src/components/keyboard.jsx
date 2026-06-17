@@ -1,15 +1,16 @@
-function Keyboard({ onKey }) {
-  const row1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
-  const row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-  const row3 = ["Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"];
+function Keyboard({ onKey, letterStatuses }) {
+  const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+  const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+  const row3 = ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Backspace"];
 
   function renderKey(key) {
     const isSpecial = key === "Enter" || key === "Backspace";
-
+    const status = letterStatuses[key.toLowerCase()];
+    console.log(key, status);
     return (
       <button
         key={key}
-        className={`key ${isSpecial ? "key--wide" : ""}`}
+        className={`key ${isSpecial ? "key--wide" : ""} ${status || ""}`}
         onClick={() => onKey(key)}
       >
         {key === "Backspace" ? "⌫" : key.toUpperCase()}

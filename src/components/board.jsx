@@ -1,15 +1,15 @@
 import Tile from "./tile";
 
 function buildRows(guesses, currentGuess) {
-  const rows = [...guesses]; //past guesses
+  const rows = [...guesses];
 
   if (rows.length < 6) {
     const currentRow = currentGuess.split("").map((letter) => ({
       letter,
-      status: "",
+      status: "empty",
     }));
 
-    while (currentRow < 5) {
+    while (currentRow.length < 5) {
       currentRow.push({
         letter: "",
         status: "empty",

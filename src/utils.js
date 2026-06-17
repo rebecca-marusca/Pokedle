@@ -24,4 +24,20 @@ export function checkGuess(guess, answer) {
     return result;
 }
 
+export function getLetterStatuses(guesses) {
+  const statuses = {};
+  const priority = { correct: 3, present: 2, absent: 1 };
+
+  for (const guess of guesses) {
+    for (const tile of guess) {
+      const current = statuses[tile.letter];
+      if (!current || priority[tile.status] > priority[current]) {
+        statuses[tile.letter] = tile.status;
+      }
+    }
+  }
+
+  return statuses;
+}
+
 console.log(checkGuess("eerie", "speed"));

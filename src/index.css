@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: white;
+  background: #800020;
 }
 
 .board {
@@ -48,14 +48,14 @@ body {
 }
 
 .tile.present {
-  background-color: #c9b458;
-  border-color: #c9b458;
+  background-color: #e5c700;
+  border-color: #e5c700;
   color: white;
 }
 
 .tile.absent {
-  background-color: #787c7e;
-  border-color: #787c7e;
+  background-color: #3a3a3c;
+  border-color: #3a3a3c;
   color: white;
 }
 
@@ -63,6 +63,21 @@ body {
   background-color: white;
   border-color: #d3d6da;
   color: black;
+}
+
+button.correct { 
+  background-color: #538d4e; 
+  color: white; 
+}
+
+button.present { 
+  background-color: #e5c700; 
+  color: white; 
+}
+
+button.absent { 
+  background-color: #3a3a3c; 
+  color: white; 
 }
 
 .keyboard {

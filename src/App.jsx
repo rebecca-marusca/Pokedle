@@ -2,7 +2,7 @@ import Board from "./components/board";
 import Keyboard from "./components/keyboard";
 import { useState, useEffect } from "react";
 import { getRandomPokemon } from "./words";
-import { checkGuess } from "./utils.js";
+import { checkGuess, getLetterStatuses } from "./utils.js";
 
 function App() {
   const [answer, setAnswer] = useState(getRandomPokemon);
@@ -12,6 +12,7 @@ function App() {
   const lastGuess = guesses[guesses.length - 1];
   const hasWon = lastGuess?.every((tile) => tile.status === "correct");
   const hasLost = !hasWon && guesses.length === 6;
+  const letterStatuses = getLetterStatuses(guesses);
 
   function handleKey(key) {
     if (hasWon || hasLost) return;
@@ -49,7 +50,7 @@ function App() {
         </div>
       )}
       <Board guesses={guesses} currentGuess={currentGuess} />
-      <Keyboard onKey={handleKey} />
+      <Keyboard onKey={handleKey} letterStatuses={letterStatuses} />
     </div>
   );
 }
