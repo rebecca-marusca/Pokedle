@@ -1,5 +1,5 @@
-function Tile() {
-  return <div> Tile </div>;
+function Tile({ letter, status }) {
+  return <div className={`tile ${status || "empty"}`}>{letter}</div>;
 }
 
 export default Tile;
